@@ -14,12 +14,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "fornecedores", catalog = "prova-armenio", schema = "", uniqueConstraints = {
+@Table(name = "fornecedores", catalog = "provaarmenio", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"razao_social"}),
     @UniqueConstraint(columnNames = {"cnpj"}),
     @UniqueConstraint(columnNames = {"nome_fantasia"})})
@@ -124,6 +123,10 @@ public class Fornecedor implements Serializable {
     @Override
     public String toString() {
         return "br.edu.infnet.domain.fornecedores.Fornecedor[ id=" + id + " ]";
+    }
+    
+    public String toText() {
+        return "Fornecedor{" + "id=" + id + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", cnpj=" + cnpj + '}';
     }
 
     public List<Contato> getContatos() {

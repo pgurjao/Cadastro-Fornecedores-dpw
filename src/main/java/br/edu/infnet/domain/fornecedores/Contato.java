@@ -18,7 +18,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "contatos", catalog = "prova-armenio", schema = "", uniqueConstraints = {
+@Table(name = "contatos", catalog = "provaarmenio", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"email"})})
 @NamedQueries({
     @NamedQuery(name = "Contato.findAll", query = "SELECT c FROM Contato c"),
@@ -26,31 +26,36 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Contato.findByNome", query = "SELECT c FROM Contato c WHERE c.nome = :nome"),
     @NamedQuery(name = "Contato.findByEmail", query = "SELECT c FROM Contato c WHERE c.email = :email"),
     @NamedQuery(name = "Contato.findByFone", query = "SELECT c FROM Contato c WHERE c.fone = :fone"),
-    @NamedQuery(name = "Contato.findByIdFornecedor", query = "SELECT c FROM Contato c WHERE c.idFornecedor = :idFornecedor")})
+    @NamedQuery(name = "Contato.findByIdFornecedor", query = "SELECT c FROM Contato c WHERE c.fornecedor = :fornecedor")})
 public class Contato implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(nullable = false)
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull(message = "O campo nome eh obrigatorio")
     @Size(min = 1, max = 50, message = "O campo nome deve ter entre 1 e 50 caracteres")
     @Column(nullable = false, length = 50)
     private String nome;
+    
     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Email invalido")
     @Basic(optional = false)
     @NotNull(message = "O campo email eh obrigatorio")
     @Size(min = 1, max = 50, message = "O campo email deve ter entre 1 e 50 caracteres")
     @Column(nullable = false, length = 50)
     private String email;
+    
     @Basic(optional = false)
     @NotNull(message = "O campo telefone eh obrigatorio")
     @Size(min = 1, max = 20, message = "O campo telefone deve ter entre 1 e 20 caracteres")
     @Column(nullable = false, length = 20)
     private String fone;
+    
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Fornecedor fornecedor;

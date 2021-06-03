@@ -18,37 +18,49 @@
         <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     </head>
     <body>
-    <!-- - - - - - - - - - - ESSE É O INDEX GERAL  - - - - - - - - - - - - - -->
+        <!-- - - - - - -  - ESSE É O INDEX DE COTACOES - - - - - - - - - - - -->
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.jsp">Cadastrar Fornecedor DPW</a>
+                <a class="navbar-brand" href="../index.jsp">Cadastrar Fornecedor DPW</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="fornecedores/index.jsp">Fornecedores</a></li>
-                    <li><a href="contatos/index.jsp">Contatos</a></li>
-                    <li><a href="#">Produtos</a></li>
-                    <li><a href="#">Contações</a></li>
+                    <li><a href="../fornecedores/index.jsp">Fornecedores</a></li>
+                    <li><a href="../contatos/index.jsp">Contatos</a></li>
+                    <li><a href="../produtos/index.jsp">Produtos</a></li>
+                    <li class="active"><a href="index.jsp">Cotações</a></li>
                 </ul>
-                
-                <!-- MENU DROPDOWN ALINHADO A DIREITA (NAO FUNCIONANDO) -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Seções <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </nav>
-    <br>
-    <h1 align="center">Voce está no INDEX.JSP <b>GERAL</b></h1>
+    <div class="container">
+        <form class="form-horizontal" action="">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="produto">Produto:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="produto" placeholder="Produto para cotacao, etc...">
+                </div>
+            </div>
+<!--            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="email" placeholder="Digite o email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="fone">Telefone:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="fone" placeholder="Digite o telefone">
+                </div>
+            </div>-->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
