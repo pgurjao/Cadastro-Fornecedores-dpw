@@ -81,7 +81,7 @@ public class Fornecedor implements Serializable {
     }
 
     public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+        this.razaoSocial = razaoSocial.strip();
     }
 
     public String getNomeFantasia() {
@@ -89,7 +89,7 @@ public class Fornecedor implements Serializable {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+        this.nomeFantasia = nomeFantasia.strip();
     }
 
     public String getCnpj() {
@@ -97,7 +97,7 @@ public class Fornecedor implements Serializable {
     }
 
     public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+        this.cnpj = cnpj.strip();
     }
 
     @Override

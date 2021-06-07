@@ -74,9 +74,12 @@
                 </div>
             </div>
         </form>
+        <br>
+        <br>
         <c:choose>
             <c:when test="${not empty fornecedores}">
-                <div style="width: 600px">
+<!--                <div  class="container" style="width: 800px; padding-left: 60px">-->
+                <div  class="container">
                     <table class="table" id="fornecedores">
                         <thead>
                             <tr>
@@ -106,12 +109,15 @@
                 </div>
             </c:when>
             <c:when test="${empty fornecedores}">
-                    <h2 style="color: red">Não há fornecedores cadastrados</h2>
+                <h2 style="color: red">Não há fornecedores cadastrados</h2>
             </c:when>
         </c:choose>
-            <c:if test="${not empty mensagem}">
-                    <h2 style="color: red">${mensagem}</h2>
-            </c:if>
+        <c:if test="${not empty mensagem}">
+            <h2 style="color: red">${mensagem}</h2>
+        </c:if>
+        <c:if test="${not empty erros}">
+            <h2 style="color: red">${erros}</h2>
+        </c:if>
     </div>
 </body>
 </html>

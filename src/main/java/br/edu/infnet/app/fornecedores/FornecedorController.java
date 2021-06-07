@@ -2,8 +2,14 @@ package br.edu.infnet.app.fornecedores;
 
 import br.edu.infnet.domain.fornecedores.Fornecedor;
 import br.edu.infnet.infra.fornecedores.FornecedorRepository;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.persistence.PersistenceException;
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,13 +71,32 @@ public class FornecedorController {
         try {
             fr.inserir(fornecedor);
         } catch (ConstraintViolationException e) {
-            retorno.addObject("mensagem", e.getMessage());
+//            retorno.addObject("mensagem", e.getMessage());
             System.out.println("[fornecedorController] ConstraintViolationException ao inserir");
-            System.out.println("[fornecedorController] getmessage = " + e.getMessage());
-            System.out.println("[fornecedorController] getcause = " + e.getCause());
-            System.out.println("[fornecedorController] getlocalized message = " + e.getLocalizedMessage());
-        }
+            System.out.println("[fornecedorController] Exception.getmessage = " + e.getMessage());
 
+            // TRANSFORMA O SET DE CONSTRAINTVIOLATION EM ARRAYLIST
+            Set<ConstraintViolation<?>> camposInvalidos = e.getConstraintViolations();
+
+            Set<String> listaErrosValidacao = new HashSet<>(camposInvalidos.size());
+            listaErrosValidacao.addAll(camposInvalidos.stream()
+                    .map(constraintViolation -> String.format("%s invalido(a). %s",
+                    constraintViolation.getPropertyPath(),
+                    constraintViolation.getMessage()))
+                    .collect(Collectors.toList()));
+
+//            List<String> listaErrosValidacao = new ArrayList<>();
+//            listaErrosValidacao.addAll(messages);
+            retorno.addObject("erros", listaErrosValidacao);
+
+        } catch (PersistenceException e) {
+            if (e.getCause() != null && e.getCause().getCause() instanceof SQLIntegrityConstraintViolationException) {
+                SQLIntegrityConstraintViolationException sql_violation_exception = (SQLIntegrityConstraintViolationException) e.getCause().getCause();
+                System.out.println("[fornecedorController] SQLIntegrityConstraintViolationException ao inserir");
+                System.out.println("[fornecedorController] Exception.getmessage = " + sql_violation_exception.getMessage());
+                retorno.addObject("erros", sql_violation_exception.getMessage());
+            }
+        }
         return retorno;
     }
 

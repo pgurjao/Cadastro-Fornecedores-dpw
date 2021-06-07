@@ -88,7 +88,7 @@ public class Contato implements Serializable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.strip();
     }
 
     public String getEmail() {
@@ -96,7 +96,7 @@ public class Contato implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.strip();
     }
 
     public String getFone() {
@@ -104,7 +104,7 @@ public class Contato implements Serializable {
     }
 
     public void setFone(String fone) {
-        this.fone = fone;
+        this.fone = fone.strip();
     }
 
     @Override
