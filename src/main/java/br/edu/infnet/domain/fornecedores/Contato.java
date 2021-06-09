@@ -131,6 +131,10 @@ public class Contato implements Serializable {
     public String toString() {
         return "br.edu.infnet.domain.fornecedores.Contato[ id=" + id + " ]";
     }
+    
+    public String toText() {
+        return "Contato{" + "id=" + id + ", Nome=" + nome + ", Email=" + email + ", Telefone=" + fone + '}';
+    }
 
     public Fornecedor getFornecedor() {
         return fornecedor;

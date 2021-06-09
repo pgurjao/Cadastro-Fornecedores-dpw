@@ -49,23 +49,24 @@
         </div><!-- /.container -->
     </nav>
     <div class="container">
-        <form class="form-horizontal" action="inserir">
+        <form class="form-horizontal" action="inserir" method="post"> <!-- Inicio formulario INSERCAO/EDICAO fornecedor -->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="razaoSocial">Razão Social:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="razaoSocial" placeholder="Digite a razao social">
+                    <input type="hidden" class="form-control" name="id" value="${fornecedor.id}">
+                    <input type="text" class="form-control" name="razaoSocial" placeholder="Digite a razao social" value="${fornecedor.razaoSocial}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="nomeFantasia">Nome Fantasia:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nomeFantasia" placeholder="Digite o nome fantasia">
+                    <input type="text" class="form-control" name="nomeFantasia" placeholder="Digite o nome fantasia" value="${fornecedor.nomeFantasia}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="cnpj">CNPJ:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ">
+                    <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ" value="${fornecedor.cnpj}">
                 </div>
             </div>
             <div class="form-group">
@@ -78,7 +79,7 @@
         <br>
         <c:choose>
             <c:when test="${not empty fornecedores}">
-<!--                <div  class="container" style="width: 800px; padding-left: 60px">-->
+                <!--                <div  class="container" style="width: 800px; padding-left: 60px">-->
                 <div  class="container">
                     <table class="table" id="fornecedores">
                         <thead>
